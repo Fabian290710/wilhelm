@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Wilhelm II. – Kaiser des Deutschen Reiches</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  scroll-behavior: smooth;
+}
+
+section {
+  min-height: 100vh;
+  padding: 80px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1, h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero {
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  animation: glow 3s infinite alternate;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 30px #00c6ff; }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  background: #000;
+  padding: 40px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <h1>Wilhelm II.</h1>
+  <p>Deutscher Kaiser & König von Preußen (1888–1918)</p>
+</section>
+
+<section class="fade">
+  <h2>Steckbrief</h2>
+  <div class="cards">
+    <div class="card">📅 <b>Geboren:</b> 27. Januar 1859</div>
+    <div class="card">👑 <b>Dynastie:</b> Haus Hohenzollern</div>
+    <div class="card">👨‍👩‍👦 <b>Eltern:</b> Friedrich III. & Victoria von Großbritannien</div>
+    <div class="card">👵 <b>Enkel von:</b> Königin Victoria</div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Herrschaft</h2>
+  <div class="cards">
+    <div class="card">⚔️ Personalherrschaft mit starker Selbstüberschätzung</div>
+    <div class="card">🚢 Massiver Ausbau der Kaiserlichen Marine</div>
+    <div class="card">🌍 Einfluss auf internationale Spannungen</div>
+    <div class="card">🏛️ Zunehmende Parlamentarisierung schwächte seine Macht</div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Ende der Herrschaft</h2>
+  <div class="cards">
+    <div class="card">📉 Abdankung 1918 nach dem Ersten Weltkrieg</div>
+    <div class="card">🇳🇱 Exil in Doorn, Niederlande</div>
+    <div class="card">⚰️ Gestorben am 4. Juni 1941</div>
+    <div class="card">🕯️ Gedenkstätte: Haus Doorn</div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Bedeutung</h2>
+  <p style="margin-top:20px; max-width:800px; line-height:1.6;">
+    Wilhelm II. prägte das Deutsche Kaiserreich entscheidend. Seine aggressive Außenpolitik,
+    sein Verhältnis zu Militär und Diplomatie sowie sein Einfluss auf den Ersten Weltkrieg
+    machen ihn zu einer der umstrittensten Figuren der deutschen Geschichte.
+  </p>
+</section>
+
+<footer>
+  <h3>Impressum</h3><br>
+  <p>
+    Erstellt von: [Name deines Freundes]<br>
+    Schulprojekt – nicht kommerziell<br>
+    Kontakt: keine Angabe<br><br>
+    Diese Website dient ausschließlich schulischen Zwecken.
+  </p>
+</footer>
+
+<script>
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  fades.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const height = window.innerHeight;
+    if (top < height - 100) {
+      el.classList.add('visible');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
