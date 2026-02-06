@@ -8,7 +8,6 @@
 <style>
 :root {
   --gold: #d4af37;
-  --dark: #0e0e12;
 }
 
 body {
@@ -33,14 +32,14 @@ body {
   animation: fade 0.6s ease;
 }
 
-@keyframes fade {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 .center {
   grid-template-columns: 1fr;
   text-align: center;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 h1 {
@@ -56,11 +55,6 @@ h2 {
 p, li {
   font-size: 1.25rem;
   line-height: 1.6;
-  opacity: 0.9;
-}
-
-ul {
-  padding-left: 20px;
 }
 
 img {
@@ -77,21 +71,28 @@ img {
   100% { transform: translateY(0); }
 }
 
+/* Navigation */
 .nav {
   position: fixed;
   bottom: 30px;
   right: 30px;
 }
 
+.nav-left {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+}
+
 button {
   background: linear-gradient(90deg, var(--gold), #f6d365);
   border: none;
   padding: 14px 30px;
-  margin-left: 12px;
   border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
   color: #000;
+  margin-right: 10px;
 }
 
 button:hover {
@@ -102,17 +103,17 @@ button:hover {
 
 <body>
 
-<!-- 1 Titel -->
+<!-- 0 Titel -->
 <div class="slide active center">
   <div>
     <h1>Wilhelm II.</h1>
     <p>Deutscher Kaiser und König von Preußen (1888–1918)</p>
-    <p><i>Präsentiert von Fin Groß</i></p>
+    <p><i>Präsentiert von Fabian Danbauer</i></p>
   </div>
   <img src="wilhelm1.jpg">
 </div>
 
-<!-- 2 Steckbrief -->
+<!-- 1 Steckbrief -->
 <div class="slide">
   <div>
     <h2>Steckbrief</h2>
@@ -126,91 +127,112 @@ button:hover {
   <img src="wilhelm2.jpg">
 </div>
 
-<!-- 3 Herrschaft -->
+<!-- 2 Herrschaft -->
 <div class="slide">
   <div>
     <h2>Herrschaftsweise</h2>
     <p>
-      Wilhelm II. regierte stark persönlich. Er griff oft direkt in Politik
-      und Militär ein, was diplomatische Spannungen verursachte.
+      Wilhelm II. regierte stark persönlich und griff häufig direkt
+      in politische und militärische Entscheidungen ein.
     </p>
   </div>
   <img src="wilhelm3.jpg">
 </div>
 
-<!-- 4 Marine -->
+<!-- 3 Marine -->
 <div class="slide">
   <div>
     <h2>Außenpolitik & Marine</h2>
     <p>
-      Der Ausbau der Kaiserlichen Marine machte Deutschland zur Seemacht,
-      verschärfte jedoch den Konflikt mit Großbritannien.
+      Der Ausbau der Kaiserlichen Marine verschärfte die internationalen
+      Spannungen, besonders mit Großbritannien.
     </p>
   </div>
   <img src="wilhelm3.jpg">
 </div>
 
-<!-- 5 Erster Weltkrieg -->
+<!-- 4 Erster Weltkrieg -->
 <div class="slide">
   <div>
     <h2>Erster Weltkrieg</h2>
     <p>
       Unter Wilhelm II. trat Deutschland in den Ersten Weltkrieg ein.
-      Seine politische Bedeutung nahm während des Krieges ab.
+      Der Kaiser verlor dabei zunehmend politischen Einfluss.
     </p>
   </div>
 </div>
 
-<!-- 6 Ende -->
+<!-- 5 Ende -->
 <div class="slide">
   <div>
     <h2>Ende der Herrschaft</h2>
     <p>
-      1918 dankte Wilhelm II. ab und floh ins Exil in die Niederlande.
+      1918 dankte Wilhelm II. ab und ging ins Exil in die Niederlande.
       Die Monarchie in Deutschland endete.
     </p>
   </div>
   <img src="doorn.jpg">
 </div>
 
-<!-- 7 Bedeutung -->
+<!-- 6 Bedeutung -->
 <div class="slide center">
   <div>
     <h2>Bedeutung</h2>
     <p>
-      Wilhelm II. zählt zu den umstrittensten Persönlichkeiten
+      Wilhelm II. gehört zu den umstrittensten Persönlichkeiten
       der deutschen Geschichte und prägte das 20. Jahrhundert stark.
     </p>
   </div>
 </div>
 
-<!-- 8 Danke -->
+<!-- 7 Danke -->
 <div class="slide center">
   <h1>Danke für eure Aufmerksamkeit</h1>
 </div>
 
+<!-- 8 Impressum -->
+<div class="slide center">
+  <div>
+    <h2>Impressum</h2>
+    <p>
+      Name: Fabian Danbauer<br>
+      Schulprojekt – nicht kommerziell<br>
+      Erstellt im Rahmen des Unterrichts<br>
+      Bilder: Public Domain (Wikimedia Commons)
+    </p>
+  </div>
+</div>
+
+<!-- Navigation -->
 <div class="nav">
   <button onclick="prev()">← Zurück</button>
   <button onclick="next()">Weiter →</button>
 </div>
 
+<div class="nav-left">
+  <button onclick="showImpressum()">Impressum</button>
+</div>
+
 <script>
-let i = 0;
+let current = 0;
 const slides = document.querySelectorAll('.slide');
 
 function show(n) {
   slides.forEach(s => s.classList.remove('active'));
   slides[n].classList.add('active');
+  current = n;
 }
 
 function next() {
-  if (i < slides.length - 1) i++;
-  show(i);
+  if (current < slides.length - 1) show(current + 1);
 }
 
 function prev() {
-  if (i > 0) i--;
-  show(i);
+  if (current > 0) show(current - 1);
+}
+
+function showImpressum() {
+  show(slides.length - 1);
 }
 </script>
 
