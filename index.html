@@ -64,6 +64,31 @@ img {
   box-shadow: 0 30px 70px rgba(0,0,0,0.8);
   animation: float 6s ease-in-out infinite;
 }
+
+/* Klick-Zoom */
+.zoomable {
+  cursor: zoom-in;
+}
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+  cursor: zoom-out;
+  animation: fade 0.3s ease;
+}
+
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -120,7 +145,7 @@ button:hover {
 
 <body>
 
-<!-- 0 Titel -->
+<!-- Titel -->
 <div class="slide active center">
   <div>
     <h1>Wilhelm II.</h1>
@@ -130,7 +155,7 @@ button:hover {
   <img src="wilhelm1.jpg">
 </div>
 
-<!-- 1 Steckbrief -->
+<!-- Steckbrief -->
 <div class="slide">
   <div>
     <h2>Steckbrief</h2>
@@ -144,7 +169,7 @@ button:hover {
   <img src="wilhelm2.jpg">
 </div>
 
-<!-- 2 Herrschaft -->
+<!-- Herrschaft -->
 <div class="slide">
   <div>
     <h2>Herrschaftsweise</h2>
@@ -156,68 +181,70 @@ button:hover {
   <img src="wilhelm3.jpg">
 </div>
 
-  <!-- 3 Otto von Bismarck -->
+<!-- Bismarck -->
 <div class="slide">
   <div>
     <h2>Otto von Bismarck</h2>
     <p>
-      Otto von Bismarck war der erste Reichskanzler des Deutschen Reiches
-      und prägte die Politik bis 1890 entscheidend.
+      Erster Reichskanzler des Deutschen Reiches und prägende Figur
+      der deutschen Politik bis 1890.
     </p>
     <p>
-      Wilhelm II. entließ Bismarck 1890, da er selbst mehr Macht ausüben
-      wollte und dessen vorsichtige Außenpolitik ablehnte.
+      Wilhelm II. entließ Bismarck, um selbst mehr Einfluss auf
+      Innen- und Außenpolitik zu nehmen.
     </p>
   </div>
-
-  <img src="bismarck.jpg" alt="Otto von Bismarck">
+  <img src="bismarck.jpg">
 </div>
 
-<!-- 3 Marine -->
+<!-- Außenpolitik -->
 <div class="slide">
   <div>
     <h2>Außenpolitik & Marine</h2>
     <p>
-      Der Ausbau der Kaiserlichen Marine verschärfte die internationalen
-      Spannungen, besonders mit Großbritannien.
+      Der massive Ausbau der Kaiserlichen Marine führte zu
+      internationalen Spannungen, besonders mit Großbritannien.
     </p>
   </div>
   <img src="wilhelm4.jpg">
 </div>
 
-<!-- 4 Erster Weltkrieg -->
+<!-- Erster Weltkrieg -->
 <div class="slide">
   <div>
     <h2>Erster Weltkrieg</h2>
     <p>
       Unter Wilhelm II. trat Deutschland in den Ersten Weltkrieg ein.
-      Der Kaiser verlor dabei zunehmend politischen Einfluss.
+      Während des Krieges verlor der Kaiser zunehmend politischen Einfluss.
     </p>
+    <p><i>(Karte anklicken zum Vergrößern)</i></p>
   </div>
 
-  <img src="karte.jpg" alt="Europa im Ersten Weltkrieg">
+  <img src="karte.jpg"
+       alt="Europa im Ersten Weltkrieg"
+       class="zoomable"
+       onclick="openLightbox(this.src)">
 </div>
 
-<!-- 5 Video -->
+<!-- Video -->
 <div class="slide">
   <div>
     <h2>Wilhelm II. im Ersten Weltkrieg</h2>
     <p>
-      Kurzes historisches Video zur Rolle Wilhelms II.,
-      seinem Machtverlust und dem Ende der Monarchie.
+      Historisches Video zum Machtverlust des Kaisers
+      und zum Ende der Monarchie.
     </p>
   </div>
 
   <div class="video-wrapper">
     <iframe
       src="https://www.youtube-nocookie.com/embed/uvdDSIQ3Y7U?rel=0&modestbranding=1"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
   </div>
 </div>
 
-<!-- 5 Ende -->
+<!-- Ende -->
 <div class="slide">
   <div>
     <h2>Ende der Herrschaft</h2>
@@ -229,39 +256,35 @@ button:hover {
   <img src="doorn.jpg">
 </div>
 
-<!-- 6 Bedeutung -->
+<!-- Bedeutung -->
 <div class="slide center">
   <div>
     <h2>Bedeutung</h2>
     <p>
-      Wilhelm II. gehört zu den umstrittensten Persönlichkeiten
-      der deutschen Geschichte und prägte das 20. Jahrhundert stark.
+      Wilhelm II. zählt zu den umstrittensten Persönlichkeiten
+      der deutschen Geschichte.
     </p>
   </div>
 </div>
 
-<!-- 7 Danke -->
+<!-- Danke -->
 <div class="slide center">
   <h1>Danke für eure Aufmerksamkeit</h1>
 </div>
 
-<!-- 8 Impressum -->
+<!-- Impressum -->
 <div class="slide center">
   <div>
     <h2>Impressum</h2>
     <p>
       Präsentation: Fin Groß<br>
       Website & technische Umsetzung: Fabian Danbauer<br><br>
-
-      Schulprojekt – nicht kommerziell<br>
-      Erstellt im Rahmen des Unterrichts<br><br>
-
+      Schulprojekt – nicht kommerziell<br><br>
       Bilder: Public Domain (Wikimedia Commons)<br>
       Video: YouTube (youtube-nocookie.com)
     </p>
   </div>
 </div>
-
 
 <!-- Navigation -->
 <div class="nav">
@@ -271,6 +294,11 @@ button:hover {
 
 <div class="nav-left">
   <button onclick="showImpressum()">Impressum</button>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
 </div>
 
 <script>
@@ -293,6 +321,15 @@ function prev() {
 
 function showImpressum() {
   show(slides.length - 1);
+}
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
 }
 </script>
 
